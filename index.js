@@ -75,27 +75,30 @@ rl.question("Enter 1 or 2: ", (choice) => {
     } else if (choice == 2) {
         rl.question("Enter the base of the triangle: ", (base) => {
             rl.question("Enter the height of the triangle: ", (height) => {
-                const area = (base * height) / 2;
+                const func = () => {
+                    const area = (base * height) / 2;
 
-                console.log("\nCalculating the Area of a Triangle");
-                console.log("+----------------+");
-                console.log(`|  Base (b) = ${base} |`);
-                console.log(`| Height (h) = ${height} |`);
-                console.log("+----------------+");
-                console.log("\nThe formula for the area of a triangle is:");
-                console.log("Area = (b * h) / 2");
+                    console.log("\nCalculating the Area of a Triangle");
+                    console.log("+----------------+");
+                    console.log(`|  Base (b) = ${chalk.green(base)} |`);
+                    console.log(`| Height (h) = ${chalk.green(height)} |`);
+                    console.log("+----------------+");
+                    console.log("\nThe formula for the area of a triangle is:");
+                    console.log("Area = (b * h) / 2");
 
-                console.log(`\nArea = (${base} * ${height}) / 2 = ${area}`);
-                console.log("\n+----------------+");
-                console.log(`|  Area (A) = ${area} |`);
-                console.log("+----------------+");
+                    console.log(chalk.bgMagenta(`\nArea = (${base} * ${height}) / 2 = ${chalk.green(area)}`));
+                    console.log("\n+----------------+");
+                    console.log(`|  Area (A) = ${chalk.green(area)} |`);
+                    console.log("+----------------+");
 
-                console.log(`\nSummary:`);
-                console.log(`The base of the triangle is ${base}.`);
-                console.log(`The height of the triangle is ${height}.`);
-                console.log(`The area of the triangle is ${area}.`);
+                    console.log(`\nSummary:`);
+                    console.log(`The base of the triangle is ${chalk.yellowBright(base)}.`);
+                    console.log(`The height of the triangle is ${chalk.yellowBright(height)}.`);
+                    console.log(`The area of the triangle is ${chalk.green(area)}.`);
 
-                rl.close();
+                    rl.close();
+                }
+                loadingCalculate(func)
             });
         });
     } else {

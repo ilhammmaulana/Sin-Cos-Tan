@@ -29,11 +29,17 @@ const loadingCalculate = (act) => {
     }, 1000);
 }
 
-console.log(chalk.bold.yellow("What would you like to do?"));
-console.log(chalk.cyan("1. Calculate sine, cosine, and tangent of an angle"));
+console.clear();
+console.log(chalk.bold.greenBright("\n Suport Developer : https://github.com/ilhammmaulana"));
+console.log(chalk.bold.yellow("\nWhat would you like to do?"));
+console.log("\n" + chalk.cyan("1. Calculate sine, cosine, and tangent of an angle"));
 console.log(chalk.green("2. Find the area of a triangle"));
+console.log(chalk.red("3. Calculator (plus, minus, multiply, divide, modulus)"));
+console.log(chalk.magenta("4. Celsius to Fahrenheit Converter\n"));
 
-rl.question("Enter 1 or 2: ", (choice) => {
+
+
+rl.question("Enter Tools code: ", (choice) => {
     if (choice == 1) {
         // Menghitung sin cos tan
         const calculateTrigonometry = (angle) => {
@@ -100,6 +106,55 @@ rl.question("Enter 1 or 2: ", (choice) => {
                 }
                 loadingCalculate(func)
             });
+        });
+    } else if (choice == 3) {
+        console.clear();
+        console.log(chalk.bold.red("\nCalculator"));
+        console.log("\n" + chalk.yellow("Enter the first number:"));
+        rl.question("", function (num1) {
+            console.log(chalk.yellow("Enter the second number:"));
+            rl.question("", function (num2) {
+                console.log(chalk.yellow("Enter the operation (+, -, *, /, %):"));
+                rl.question("", function (operator) {
+                    let result;
+                    switch (operator) {
+                        case '+':
+                            result = parseFloat(num1) + parseFloat(num2);
+                            break;
+                        case '-':
+                            result = parseFloat(num1) - parseFloat(num2);
+                            break;
+                        case '*':
+                            result = parseFloat(num1) * parseFloat(num2);
+                            break;
+                        case '/':
+                            result = parseFloat(num1) / parseFloat(num2);
+                            break;
+                        case '%':
+                            result = parseFloat(num1) % parseFloat(num2);
+                            break;
+                        default:
+                            console.log(chalk.red("\nInvalid operator."));
+                            rl.close();
+                            return;
+                    }
+                    console.log(chalk.green("\n+-----------------------+"));
+                    console.log("| " + chalk.bold.yellow(`${num1} ${operator} ${num2} =`) + " " + chalk.bold.yellow(result) + " |");
+                    console.log(chalk.green("+-----------------------+\n"));
+                    rl.close();
+                });
+            });
+        });
+    } else if (choice == 4) {
+        console.clear();
+        console.log(chalk.bold.red("\nCelsius to Fahrenheit Converter"));
+        console.log("\n" + chalk.yellow("Enter the temperature in Celsius:"));
+        rl.question("", function (celsius) {
+            const fahrenheit = (parseFloat(celsius) * 9 / 5) + 32;
+            console.log(chalk.green("\n+-------------------------+"));
+            console.log("| " + chalk.bold.yellow(`${celsius}°C`) + " = " + chalk.bold.yellow(`${fahrenheit}°F`) + " |");
+            console.log(chalk.green("+-------------------------+\n"));
+            rl.close();
         });
     } else {
         console.log("Invalid choice. Please enter 1 or 2.");
